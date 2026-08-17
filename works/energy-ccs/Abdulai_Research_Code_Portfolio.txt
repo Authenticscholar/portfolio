@@ -1,0 +1,430 @@
+Research Code Portfolio — Alhassan Abdulai
+Peak Cluster CCS Thesis Analysis | https://github.com/Authenticscholar/peak-cluster-ccs-analysis
+Generated: 2026-07-08 23:37 UTC
+
+==============================================================================
+OVERVIEW
+==============================================================================
+
+Python-first reproducible research pipeline for UK cement-sector CCS (Peak Cluster).
+Strands: (1) techno-economic Monte Carlo, (2) MAC/ETS policy scenarios,
+(3) policy lock-in corpus scoring, (4) discourse/SLO sentiment analysis.
+Optional R mirror validates Monte Carlo median. Full repo on GitHub.
+
+
+------------------------------------------------------------------------------
+Local pipeline orchestrator (05_code/run_pipeline.py)
+End-to-end reproducible pipeline: ingest, Monte Carlo, MAC, ETS, discourse, figures.
+Source: 05_code\run_pipeline.py
+------------------------------------------------------------------------------
+
+"""Run full quantitative replication pipeline (Part C + extensions)."""
+from __future__ import annotations
+
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+LOG = ROOT / "08_logs" / "execution_log.md"
+
+
+def stamp(msg: str) -> None:
+    line = f"\n## {datetime.now(timezone.utc).isoformat()}\n{msg}\n"
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open("a", encoding="utf-8") as f:
+        f.write(line)
+    print(line)
+
+
+def run(mod: str) -> None:
+    subprocess.check_call([sys.executable, str(ROOT / "05_code" / f"{mod}.py")], cwd=str(ROOT / "05_code"))
+
+
+def main() -> None:
+    stamp("Pipeline start")
+    steps = [
+        "ingest_workbook",
+        "monte_carlo_lco2a",
+        "mac_curve",
+        "tornado_analysis",
+        "ets_scenarios",
+        "sentiment_discourse",
+        "policy_lockin_heatmap",
+        "export_reports",
+        "publish_chapter4_figures",
+        "alternative_portfolio",
+        "build_alternative_representation_guide",
+    ]
+    for s in steps:
+        stamp(f"Running {s}")
+        run(s)
+    stamp("Pipeline complete")
+
+
+... [2 lines truncated] ...
+
+------------------------------------------------------------------------------
+Monte Carlo LCO2A simulation (05_code/monte_carlo_lco2a.py)
+Triangular draws, seed=42, N=10,000; mirrors Stata simulate + summarize/histogram.
+Source: 05_code\monte_carlo_lco2a.py
+------------------------------------------------------------------------------
+
+"""
+Monte Carlo LCO2A (USD/t) per thesis Part C: triangular inputs, seed=42, N>=10_000.
+Formula: LCO2A = (C_cap + C_tr + C_st) / (1 - eta * EF_grid / 3.6)
+Uses numpy.random.RandomState API (np.random.triangular) for bit-for-bit alignment with
+the companion workbook MC draws when iteration order matches the thesis script.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+from config_paths import (
+    FIGS,
+    LOGS,
+    MC_ITERATIONS,
+    OUTPUT_TABLES,
+    PROCESSED,
+    RNG_SEED,
+    WORKBOOK,
+)
+
+
+def load_tea_ordered() -> tuple[list[tuple[str, float, float]], dict[str, tuple[float, float]]]:
+    """Return capture technologies in sheet order (name, low, high) and shared param bounds."""
+    df = pd.read_excel(WORKBOOK, sheet_name="21_TEA_Parameters", engine="openpyxl")
+    df = df.rename(columns=str.lower)
+    capture: list[tuple[str, float, float]] = []
+    shared: dict[str, tuple[float, float]] = {}
+    for _, row in df.iterrows():
+        name = str(row["parameter"]).strip()
+        lo, hi = float(row["low"]), float(row["high"])
+        lname = name.lower()
+        if (
+            "capture" in lname
+            or "liquefaction" in lname
+            or ("calcium" in lname and "looping" in lname)
+        ):
+            capture.append((name, lo, hi))
+        elif "pipeline transport" in lname:
+            shared["transport"] = (lo, hi)
+        elif "offshore storage" in lname or ("storage" in lname and "offshore" in lname):
+            shared["storage"] = (lo, hi)
+        elif "energy penalty" in lname:
+            shared["energy_penalty"] = (lo, hi)
+        elif "grid emission" in lname:
+            shared["grid_ef"] = (lo, hi)
+    return capture, shared
+
+
+def tech_display_name(full: str) -> str:
+    if full.startswith("Post-combustion MEA"):
+        return "Post-combustion MEA"
+    if full.startswith("Oxyfuel"):
+        return "Oxyfuel"
+    if full.startswith("Chilled ammonia"):
+        return "Chilled ammonia"
+    if full.startswith("Calcium looping"):
+        return "Calcium looping"
+    if "Membrane" in full:
+        return "Membrane-assisted liquefaction"
+    return full
+
+
+def run_monte_carlo(n: int = MC_ITERATIONS, seed: int = RNG_SEED) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+    capture_ordered, shared = load_tea_ordered()
+    np.random.seed(seed)
+
+    def tri(lo: float, hi: float, size: int) -> np.ndarray:
+        mode = (lo + hi) / 2.0
+        return np.random.triangular(lo, mode, hi, size=size)
+
+    tr_lo, tr_hi = shared["transport"]
+    st_lo, st_hi = shared["storage"]
+    et_lo, et_hi = shared["energy_penalty"]
+    gr_lo, gr_hi = shared["grid_ef"]
+
+    raw_cols: dict[str, np.ndarray] = {}
+    summary_rows = []
+
+    for tech_full, cap_lo, cap_hi in capture_ordered:
+        c_cap = tri(cap_lo, cap_hi, n)
+        c_tr = tri(tr_lo, tr_hi, n)
+        c_st = tri(st_lo, st_hi, n)
+        eta = tri(et_lo, et_hi, n)
+        grid = tri(gr_lo, gr_hi, n)
+        indirect = eta * (grid / 3.6)
+... [112 lines truncated] ...
+
+------------------------------------------------------------------------------
+R cross-validation mirror (05_code/monte_carlo_mirror.R)
+Independent R replication of MEA median LCO2A for validation.
+Source: 05_code\monte_carlo_mirror.R
+------------------------------------------------------------------------------
+
+# R mirror: Monte Carlo LCO₂A (USD/t) for Post-combustion MEA — run after:
+#   install.packages("triangle")
+# Rscript monte_carlo_mirror.R
+
+set.seed(42)
+N <- 10000L
+
+if (!requireNamespace("triangle", quietly = TRUE)) {
+  stop("Install triangle: install.packages('triangle')")
+}
+
+tri_draw <- function(lo, hi) {
+  mode <- (lo + hi) / 2
+  triangle::rtriangle(N, a = lo, b = hi, c = mode)
+}
+
+c_cap <- tri_draw(79, 125)
+c_tr <- tri_draw(4.6, 11.9)
+c_st <- tri_draw(5.3, 15.8)
+eta <- tri_draw(2.5, 4.5)
+grid <- tri_draw(0.05, 0.12)
+indirect <- eta * (grid / 3.6)
+lco2a <- (c_cap + c_tr + c_st) / (1 - indirect)
+
+cat(sprintf("MEA median USD/t: %.4f (Python ref ~131.3767)\n", stats::median(lco2a)))
+
+------------------------------------------------------------------------------
+GitHub script 01 — TEA & Monte Carlo (published repo)
+Public replication script for techno-economic analysis and breakeven checks.
+Source: 07_outputs\_packaging_staging_20260709\github_peak-cluster-ccs-analysis\scripts\01_tea_monte_carlo.py
+------------------------------------------------------------------------------
+
+"""
+Script 01 — Techno-Economic Analysis and Monte Carlo Simulation
+===============================================================
+Thesis: Carbon Capture and Storage in the UK Cement Sector:
+        Policy Incentives, Economic Viability and Public Perception
+Author: Alhassan Abdulai
+Institution: University of Manchester
+Date: May 2026
+
+Computes:
+  - Levelised Cost of CO2 Avoided (LCO2A) for five CCS capture technologies
+  - Monte Carlo sensitivity analysis (N = 10,000 iterations)
+  - Breakeven carbon price per technology against UK ETS scenarios
+  - Implied public subsidy requirement at 2026 UK ETS civil-penalty price
+
+Formula:
+  LCO2A = C_cap + C_trans + C_stor
+
+References:
+  Gardarsdottir et al. (2019) Energies 12(3):542
+  Voldsund et al. (2019) Energies 12(3):559
+  ZEP (2011) Costs of CO2 Transport
+  GOV.UK UK ETS Authority (2025) Civil penalty carbon price 2026
+  Strunge et al. (2022) SSRN 4286149
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import warnings
+warnings.filterwarnings("ignore")
+
+np.random.seed(42)
+N = 10_000  # Monte Carlo iterations
+
+# ------------------------------------------------------------
+# PARAMETER RANGES — triangular distributions (low, high)
+# All costs in USD/t CO2, 2024-25 prices (GBP * 1.32)
+# Source: Gardarsdottir et al. (2019); Voldsund et al. (2019)
+# ------------------------------------------------------------
+TECHNOLOGIES = {
+    "Post-combustion MEA":          {"cap_lo": 79.00,  "cap_hi": 125.00},
+    "Oxyfuel":                      {"cap_lo": 42.00,  "cap_hi":  73.00},
+    "Chilled ammonia":              {"cap_lo": 66.00,  "cap_hi":  99.00},
+    "Calcium looping":              {"cap_lo": 59.00,  "cap_hi":  92.00},
+    "Membrane-assisted liquefaction":{"cap_lo": 86.00, "cap_hi": 119.00},
+}
+
+# Shared transport and storage ranges — ZEP (2011); IEA (2020)
+TRANS_LO, TRANS_HI = 4.60,  11.90   # 200 km onshore pipeline, 3 Mt/yr
+STOR_LO,  STOR_HI  = 5.30,  15.80   # Depleted gas reservoir offshore
+
+# UK ETS scenarios (USD/t CO2)
+GBP_USD      = 1.32         # exchange-rates.org 2025 annual average
+ETS_LOW      = 49.41 * GBP_USD    # 2026 civil penalty = 65.22 USD/t
+ETS_CENTRAL  = 90.0 * GBP_USD     # CCC Sixth Carbon Budget trajectory midpoint
+ETS_HIGH     = 140.0 * GBP_USD    # IEA Net-Zero 2050 trajectory
+
+THROUGHPUT   = 3.0           # Mt CO2/yr — ICC design throughput
+CONTRACT_YRS = 15            # ICC CfD contract term (years)
+
+
+def tri_sample(lo, hi, n):
+    """Symmetric triangular distribution sample."""
+    return np.random.triangular(lo, (lo + hi) / 2, hi, n)
+
+
+# ------------------------------------------------------------
+# MONTE CARLO
+# ------------------------------------------------------------
+mc_results = {}
+
+for tech, p in TECHNOLOGIES.items():
+    c_cap   = tri_sample(p["cap_lo"], p["cap_hi"], N)
+    c_trans = tri_sample(TRANS_LO, TRANS_HI, N)
+    c_stor  = tri_sample(STOR_LO,  STOR_HI,  N)
+    lco2a   = c_cap + c_trans + c_stor
+
+    mc_results[tech] = {
+... [114 lines truncated] ...
+
+------------------------------------------------------------------------------
+GitHub script 04 — SLO discourse (published repo)
+Frame families, SLO continuum coding, VADER sentiment cross-tabs.
+Source: 07_outputs\_packaging_staging_20260709\github_peak-cluster-ccs-analysis\scripts\04_slo_discourse_analysis.py
+------------------------------------------------------------------------------
+
+"""
+Script 04 — Social Media Discourse Analysis and SLO Scoring (Objective 3)
+=========================================================================
+Thesis: Carbon Capture and Storage in the UK Cement Sector:
+        Policy Incentives, Economic Viability and Public Perception
+Author: Alhassan Abdulai
+Institution: University of Manchester
+Date: May 2026
+
+Operationalises the Social License to Operate (SLO) continuum
+(Boutilier and Thomson, 2011) across the cleaned 191-item discourse
+corpus. Produces frequency distributions, frame-family bar charts,
+stakeholder SLO heatmap, and VADER sentiment cross-tabulation.
+
+References:
+  Boutilier, R. and Thomson, I. (2011) SME Mining Engineering Handbook.
+  Jijelava, D. and Vanclay, F. (2017) Journal of Cleaner Production 140.
+  Braun, V. and Clarke, V. (2019) Qualitative Research in Sport 11(4).
+  Hutto, C. and Gilbert, E. (2014) ICWSM.
+  KhosraviNik, M. (2017) Handbook of Critical Discourse Analysis.
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import matplotlib.ticker as mticker
+import warnings
+warnings.filterwarnings("ignore")
+
+# ------------------------------------------------------------
+# CORPUS SUMMARY DATA (191 unique records after deduplication)
+# Source: Thesis_Chapter4_Database.xlsx — sheets 30-37
+# ------------------------------------------------------------
+
+# SLO position by stakeholder group
+SLO_BY_GROUP = {
+    #  group               n   withholding  conditional  cond_accept  oppose_stance
+    "Activist coalition": (31, 26, 4,  0,  27),
+    "Local govt/elected": (37, 27, 9,  0,  18),
+    "Residents/community":(104,32, 70, 0,  47),
+    "Media":              (16,  4, 11, 1,   1),
+    "Project developer":  ( 3,  0,  0, 0,   0),
+}
+
+df_slo = pd.DataFrame(
+    [(g, *v) for g, v in SLO_BY_GROUP.items()],
+    columns=["Group","n","Withholding","Conditional","Cond_Accept","Oppose"]
+)
+df_slo["Withholding_pct"]   = df_slo["Withholding"]   / df_slo["n"] * 100
+df_slo["Conditional_pct"]   = df_slo["Conditional"]   / df_slo["n"] * 100
+df_slo["Cond_Accept_pct"]   = df_slo["Cond_Accept"]   / df_slo["n"] * 100
+
+# Frame family counts (primary frame, n=191 items)
+FRAMES = {
+    "Place identity and landscape":       93,
+    "Procedural and consultation":        65,
+    "Safety and ecological risk":         29,
+    "Economic concerns":                   2,
+    "Technical legitimacy (proponent)":    1,
+    "Trust deficit":                       1,
+}
+
+# Stance distribution
+STANCE = {
+    "Oppose":                  94,
+    "Neutral / mixed":         76,
+    "Critical scrutiny":       18,
+    "Conditional / engaged":    1,
+    "Proponent support":        2,
+... [184 lines truncated] ...
+
+------------------------------------------------------------------------------
+Data ingest & quality checks (05_code/ingest_workbook.py)
+Sheet inventory, missing-value audit, schema export — Stata describe/misstable analogue.
+Source: 05_code\ingest_workbook.py
+------------------------------------------------------------------------------
+
+"""
+Ingest Thesis_Chapter4_Database.xlsx: sheet inventory, NA checks, schema / data dictionary exports.
+"""
+from __future__ import annotations
+
+import json
+
+import numpy as np
+import pandas as pd
+
+from config_paths import DICTIONARIES, LOGS, WORKBOOK
+
+
+def main() -> None:
+    xl = pd.ExcelFile(WORKBOOK)
+    inventory_rows = []
+    na_summary_rows = []
+
+    for sheet in xl.sheet_names:
+        df = pd.read_excel(WORKBOOK, sheet_name=sheet, engine="openpyxl")
+        n_na = int(df.isna().sum().sum())
+        inv = {
+            "sheet": sheet,
+            "n_rows": len(df),
+            "n_cols": len(df.columns),
+            "columns": "|".join(map(str, df.columns)),
+        }
+        inventory_rows.append(inv)
+        for col in df.columns:
+            na_summary_rows.append(
+                {
+                    "sheet": sheet,
+                    "column": col,
+                    "na_count": int(df[col].isna().sum()),
+                    "na_pct": float(np.mean(df[col].isna()) * 100) if len(df) else 0.0,
+                }
+            )
+
+    inv_df = pd.DataFrame(inventory_rows)
+    na_df = pd.DataFrame(na_summary_rows)
+
+    DICTIONARIES.mkdir(parents=True, exist_ok=True)
+
+    inv_df.to_csv(DICTIONARIES / "sheet_inventory.csv", index=False)
+    na_df.to_csv(DICTIONARIES / "missing_value_audit.csv", index=False)
+
+    # Typed schema (dtype + sample non-null)
+    schema_rows = []
+    for sheet in xl.sheet_names:
+        df = pd.read_excel(WORKBOOK, sheet_name=sheet, engine="openpyxl", nrows=500)
+        for col in df.columns:
+            ser = df[col].dropna()
+            sample = None
+            if len(ser):
+                v = ser.iloc[0]
+                sample = str(v)[:200] if not isinstance(v, (bytes,)) else "<bytes>"
+            schema_rows.append(
+                {
+                    "sheet": sheet,
+                    "column": col,
+... [23 lines truncated] ...
