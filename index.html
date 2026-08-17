@@ -3,102 +3,149 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alhassan Abdulai — Selected work</title>
+  <title>Alhassan Abdulai — Selected research exhibits</title>
   <style>
-    :root { --ink:#1a2332; --muted:#5b6573; --line:#d9dee6; --bg:#f7f8fa; --card:#fff; --accent:#1a3a5c; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
-    header { background:var(--accent); color:#fff; padding:2.4rem 1.25rem 2rem; }
-    header .wrap, main, footer { max-width:920px; margin:0 auto; }
-    h1 { margin:0 0 .4rem; font-size:1.85rem; }
-    .sub { opacity:.92; }
-    .contact { margin-top:.85rem; font-size:.9rem; }
-    .contact a { color:#dbe7f5; }
-    main { padding:1.5rem 1.25rem 3rem; }
-    h2 { font-size:1.15rem; color:var(--accent); margin:1.8rem 0 .6rem; border-bottom:1px solid var(--line); padding-bottom:.35rem; }
-    p.lead, .meta { color:var(--muted); }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:1rem 1.1rem; margin:.75rem 0; }
-    .grid { display:grid; grid-template-columns:1fr; gap:1rem; }
-    @media (min-width:720px) { .grid { grid-template-columns:1fr 1fr; } }
-    figure { margin:0; background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
-    figure img { width:100%; display:block; background:#fff; }
-    figcaption { font-size:.86rem; color:var(--muted); padding:.7rem .85rem .9rem; }
-    a { color:#1557b0; }
-    footer { padding:0 1.25rem 2.5rem; color:var(--muted); font-size:.85rem; }
+    :root {
+      --navy:#12263a;
+      --ink:#1c2430;
+      --muted:#5c6774;
+      --line:#d7dde5;
+      --paper:#fff;
+      --bg:#eef1f5;
+      --gold:#b08d3a;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.5; }
+    .bar { background:var(--navy); color:#fff; }
+    .wrap { max-width:1080px; margin:0 auto; padding:0 1.4rem; }
+    header { padding:2.4rem 0 1.6rem; }
+    .kicker { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#c9b07a; margin:0 0 .55rem; }
+    h1 { margin:0 0 .45rem; font-size:2rem; font-weight:700; letter-spacing:.01em; }
+    .affil { font-size:.92rem; color:#d5dde6; max-width:48rem; margin:.35rem 0; }
+    .contact { margin-top:.85rem; font-size:.88rem; }
+    .contact a { color:#e8eef5; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.25); }
+    .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid rgba(255,255,255,.12); }
+    .kpi { padding:1rem 1.15rem 1.15rem; border-right:1px solid rgba(255,255,255,.12); }
+    .kpi:last-child { border-right:0; }
+    .kpi b { display:block; font-size:1.18rem; }
+    .kpi span { display:block; font-size:.72rem; color:#b8c4d1; margin-top:.2rem; letter-spacing:.04em; text-transform:uppercase; }
+    @media (max-width:800px) { .kpis { grid-template-columns:1fr 1fr; } .kpi { border-bottom:1px solid rgba(255,255,255,.12); } }
+    main { padding:2rem 0 3.2rem; }
+    h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); margin:2rem 0 .8rem; }
+    .intro { background:var(--paper); border:1px solid var(--line); border-top:3px solid var(--gold); padding:1.15rem 1.25rem; margin-bottom:1.2rem; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media (max-width:800px) { .grid { grid-template-columns:1fr; } }
+    figure { margin:0; background:var(--paper); border:1px solid var(--line); }
+    figure img { width:100%; display:block; }
+    figcaption { padding:.8rem .95rem 1rem; font-size:.84rem; color:var(--muted); }
+    figcaption strong { color:var(--navy); display:block; margin-bottom:.2rem; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
+    .docs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+    @media (max-width:800px) { .docs { grid-template-columns:1fr; } }
+    .doc { background:var(--paper); border:1px solid var(--line); padding:1rem 1.05rem; }
+    .doc a { color:var(--navy); font-weight:700; text-decoration:none; }
+    .doc p { margin:.4rem 0 0; font-size:.86rem; color:var(--muted); }
+    .pubs li { margin:.45rem 0; }
+    a { color:#1a4f86; }
+    footer { border-top:1px solid var(--line); padding:1.2rem 0 2.2rem; font-size:.8rem; color:var(--muted); }
   </style>
 </head>
 <body>
-  <header>
+  <div class="bar">
     <div class="wrap">
-      <h1>Alhassan Abdulai</h1>
-      <div class="sub">Selected figures and writing from finished work — not a dump of every file</div>
-      <div class="contact">
-        <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a>
-        · <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169">LinkedIn</a>
-        · <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Research code</a>
+      <header>
+        <p class="kicker">Selected research exhibits</p>
+        <h1>Alhassan Abdulai</h1>
+        <p class="affil">
+          <strong>MESPOM</strong> — MSc Environmental Sciences, Policy and Management, Erasmus Mundus Joint Master’s (Distinction, GPA 3.73, 2026).<br />
+          Universities attended: Central European University (Vienna) · University of the Aegean (Lesvos) · University of Manchester.
+        </p>
+        <p class="affil">
+          Also: MSc Climate Change Engineering, Pan African University / Université Abou Bekr Belkaïd (PAUWES) · BSc Agribusiness, First Class, University for Development Studies (Ghana).
+        </p>
+        <p class="contact">
+          <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a>
+          &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169">LinkedIn</a>
+          &nbsp;·&nbsp; <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Replication code</a>
+        </p>
+      </header>
+    </div>
+    <div class="wrap">
+      <div class="kpis">
+        <div class="kpi"><b>USD 131.4 / t</b><span>Median LCO₂A (MEA)</span></div>
+        <div class="kpi"><b>USD 65.2 / t</b><span>UK ETS 2026 reference</span></div>
+        <div class="kpi"><b>4.4 / 7</b><span>Mean policy lock-in</span></div>
+        <div class="kpi"><b>N = 10,000</b><span>Monte Carlo draws</span></div>
       </div>
     </div>
-  </header>
-  <main>
-    <p class="lead">The full MESPOM thesis is <strong>not</strong> posted here. University copyright, possible journal use of chapters, and the size of an 86-page dissertation make a public PDF a weak idea. What follows are the figures that appear in the <em>final submitted thesis</em>, plus short writing samples and publication DOIs. The complete thesis is available on request.</p>
+  </div>
 
-    <h2>1. Peak Cluster CCS — figures from the final thesis (2026)</h2>
-    <p class="meta">University of Manchester / MESPOM. Supervisor: Prof. Ian Kane. Mixed-methods case study: policy lock-in, Monte Carlo LCO₂A, MAC curve, social licence.</p>
+  <main class="wrap">
+    <h2>Peak Cluster CCS — United Kingdom</h2>
+    <div class="intro">
+      Mixed-methods case study of industrial CCS in the UK cement and lime sector (supervisor: Prof. Ian Kane, University of Manchester).
+      Policy lock-in, techno-economic modelling and social licence are integrated in a joint display.
+      Exhibits are taken from the <em>final submitted MESPOM thesis</em>. The full dissertation is available on request and is not hosted here.
+    </div>
+
     <div class="grid">
       <figure>
-        <a href="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png"><img src="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png" alt="Peak Cluster CO2 pipeline corridor map" /></a>
-        <figcaption>Figure 1 — Peak Cluster–Morecambe pipeline corridor and anchor cement/lime facilities (study-area map in the final thesis).</figcaption>
+        <a href="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png"><img src="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png" alt="Peak Cluster pipeline map" /></a>
+        <figcaption><strong>Exhibit 1 · Study area</strong> Pipeline corridor and anchor cement/lime facilities, North West England (final thesis Figure 1).</figcaption>
       </figure>
       <figure>
-        <a href="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png"><img src="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png" alt="Monte Carlo LCO2A distributions" /></a>
-        <figcaption>Figure 5 — Monte Carlo LCO₂A by capture technology (N=10,000). Core quantitative result: MEA median about USD 131/t versus UK ETS 2026 USD 65.2/t.</figcaption>
+        <a href="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png"><img src="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png" alt="Monte Carlo LCO2A" /></a>
+        <figcaption><strong>Exhibit 2 · Cost uncertainty</strong> Monte Carlo LCO₂A by capture technology (final thesis Figure 5). MEA median USD 131.4/t versus UK ETS USD 65.2/t.</figcaption>
       </figure>
       <figure>
-        <a href="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png"><img src="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png" alt="UK cement MAC curve" /></a>
-        <figcaption>Figure 8 — Comparative MAC curve for the UK cement sector, with UK ETS price references.</figcaption>
+        <a href="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png"><img src="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png" alt="MAC curve" /></a>
+        <figcaption><strong>Exhibit 3 · Abatement options</strong> Comparative MAC curve, UK cement, with ETS price references (final thesis Figure 8).</figcaption>
       </figure>
       <figure>
-        <a href="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png"><img src="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png" alt="Policy lock-in heatmap" /></a>
-        <figcaption>Figure 2 — Policy-document lock-in heatmap (P01–P15), coded in NVivo 14. Corpus mean lock-in 4.4/7.</figcaption>
+        <a href="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png"><img src="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png" alt="Lock-in heatmap" /></a>
+        <figcaption><strong>Exhibit 4 · Policy regime</strong> Lock-in heatmap for 15 policy documents (final thesis Figure 2). Corpus mean 4.4/7.</figcaption>
       </figure>
       <figure>
-        <a href="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png"><img src="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png" alt="Tornado sensitivity chart" /></a>
-        <figcaption>Figure 7 — Tornado sensitivity for post-combustion MEA: capture cost dominates LCO₂A uncertainty.</figcaption>
+        <a href="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png"><img src="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png" alt="Tornado chart" /></a>
+        <figcaption><strong>Exhibit 5 · Cost drivers</strong> Tornado sensitivity for post-combustion MEA: capture cost dominates (final thesis Figure 7).</figcaption>
       </figure>
       <figure>
-        <a href="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png"><img src="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png" alt="Joint display of mixed methods" /></a>
-        <figcaption>Figure 13 — Joint display integrating policy, techno-economic and social-licence strands (final synthesis figure).</figcaption>
+        <a href="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png"><img src="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png" alt="Joint display" /></a>
+        <figcaption><strong>Exhibit 6 · Synthesis</strong> Joint display of policy, economics and social-licence strands (final thesis Figure 13).</figcaption>
       </figure>
-    </div>
-    <div class="card">
-      <ul>
-        <li><a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Thesis abstract</a></li>
-        <li><a href="works/energy-ccs/Abdulai_Research_Summary.docx">Two-page research summary</a></li>
-        <li><a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Reproducible Python pipeline</a></li>
-      </ul>
     </div>
 
-    <h2>2. Climate risk, drought and adaptation</h2>
-    <div class="card">
-      <p>Journal PDFs are not re-hosted (publisher copyright). Use the DOIs:</p>
+    <h2>Documents for download</h2>
+    <div class="docs">
+      <div class="doc">
+        <a href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.pdf">Research brief</a>
+        <p>Two-page findings note (Arial). Full MESPOM consortium. <a href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.docx">Word</a></p>
+      </div>
+      <div class="doc">
+        <a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.pdf">Thesis abstract</a>
+        <p>Examined abstract with Erasmus Mundus affiliation. <a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Word</a></p>
+      </div>
+      <div class="doc">
+        <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Replication repository</a>
+        <p>Python pipeline (numpy / pandas / matplotlib), seed 42.</p>
+      </div>
+    </div>
+
+    <h2>Related publications</h2>
+    <div class="intro pubs">
       <ul>
         <li>Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends. <em>Journal of Earth System Science</em>, 135, 187. <a href="https://doi.org/10.1007/s12040-026-02867-4">doi:10.1007/s12040-026-02867-4</a></li>
         <li>Saber, M., Koroma, A., Posite, R. V., Ly, A., Tejan Bah, A. M., Abdulai, A., et al. (2025). Climate change adaptation and disaster risk reduction in Africa. <em>Journal of Water and Climate Change</em>, 16(5), 1831–1862. <a href="https://doi.org/10.2166/wcc.2025.741">doi:10.2166/wcc.2025.741</a></li>
+        <li>Siddique, H. A., Kanagie, A., &amp; Abdulai, A. (2024). Echoes of the past: Power and colonial impact on contemporary climate politics. In <em>Climate change and environmental politics</em> (pp. 141–166). Transnational Press London.</li>
       </ul>
-      <p><a href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief — drought and food security, northern Ghana (PDF)</a></p>
-    </div>
-
-    <h2>3. Carbon markets and other writing</h2>
-    <div class="card">
-      <ul>
-        <li><a href="works/carbon-markets/Alhassan_Abdulai_Publications_NHH.pdf">Publications list</a></li>
-        <li>PAUWES MSc (blockchain and carbon-market transparency, 2024) — full text not posted; available on request.</li>
-        <li>BSc Agribusiness dissertation (effects of climate change on irrigated agriculture in northern Ghana, UDS 2019) — not on this machine in a genuine file; Google Drive is not synced here. Send a Drive link and it can be added as abstract + selected figures only.</li>
-      </ul>
+      <p style="margin:.8rem 0 0;">
+        <a href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief — drought and food security, northern Ghana</a>
+        · <a href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publications list</a>
+        · <a href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.pdf">Publication plan</a>
+      </p>
     </div>
   </main>
   <footer>
-    <p>Figures extracted from the final submitted MESPOM thesis PDF (August 2026). Full thesis withheld from this site by design.</p>
+    <div class="wrap">Exhibits extracted from the final MESPOM thesis PDF (CEU · University of the Aegean · University of Manchester). Full dissertation on request.</div>
   </footer>
 </body>
 </html>
