@@ -3,27 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alhassan Abdulai — Work portfolio</title>
+  <title>Alhassan Abdulai — Selected work</title>
   <style>
     :root { --ink:#1a2332; --muted:#5b6573; --line:#d9dee6; --bg:#f7f8fa; --card:#fff; --accent:#1a3a5c; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
     header { background:var(--accent); color:#fff; padding:2.4rem 1.25rem 2rem; }
-    header .wrap, main, footer { max-width:880px; margin:0 auto; }
-    h1 { margin:0 0 .4rem; font-size:1.85rem; letter-spacing:.02em; }
-    .sub { opacity:.92; font-size:.98rem; }
+    header .wrap, main, footer { max-width:920px; margin:0 auto; }
+    h1 { margin:0 0 .4rem; font-size:1.85rem; }
+    .sub { opacity:.92; }
     .contact { margin-top:.85rem; font-size:.9rem; }
     .contact a { color:#dbe7f5; }
     main { padding:1.5rem 1.25rem 3rem; }
     h2 { font-size:1.15rem; color:var(--accent); margin:1.8rem 0 .6rem; border-bottom:1px solid var(--line); padding-bottom:.35rem; }
-    p.lead { color:var(--muted); }
+    p.lead, .meta { color:var(--muted); }
     .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:1rem 1.1rem; margin:.75rem 0; }
-    .card h3 { margin:.1rem 0 .35rem; font-size:1.02rem; }
-    .meta { color:var(--muted); font-size:.88rem; margin-bottom:.5rem; }
-    ul { margin:.35rem 0 .2rem 1.1rem; padding:0; }
-    li { margin:.22rem 0; }
+    .grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+    @media (min-width:720px) { .grid { grid-template-columns:1fr 1fr; } }
+    figure { margin:0; background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    figure img { width:100%; display:block; background:#fff; }
+    figcaption { font-size:.86rem; color:var(--muted); padding:.7rem .85rem .9rem; }
     a { color:#1557b0; }
-    .doi { font-size:.9rem; }
     footer { padding:0 1.25rem 2.5rem; color:var(--muted); font-size:.85rem; }
   </style>
 </head>
@@ -31,79 +31,74 @@
   <header>
     <div class="wrap">
       <h1>Alhassan Abdulai</h1>
-      <div class="sub">Selected public work samples — energy economics, carbon markets, climate risk and policy writing</div>
+      <div class="sub">Selected figures and writing from finished work — not a dump of every file</div>
       <div class="contact">
         <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a>
         · <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169">LinkedIn</a>
-        · <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Research code (GitHub)</a>
+        · <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Research code</a>
       </div>
     </div>
   </header>
   <main>
-    <p class="lead">This site hosts documents I can share publicly: thesis outputs, policy writing, publications, and methods notes. It does not include confidential employer files from the UNFCCC, SEforALL or the Common Fund for Commodities.</p>
+    <p class="lead">The full MESPOM thesis is <strong>not</strong> posted here. University copyright, possible journal use of chapters, and the size of an 86-page dissertation make a public PDF a weak idea. What follows are the figures that appear in the <em>final submitted thesis</em>, plus short writing samples and publication DOIs. The complete thesis is available on request.</p>
 
-    <h2>How to cite this portfolio on a CV</h2>
-    <div class="card">
-      <ul>
-        <li>Work portfolio: <a href="https://authenticscholar.github.io/portfolio/">https://authenticscholar.github.io/portfolio/</a></li>
-        <li>Reproducible CCS research code: <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">https://github.com/Authenticscholar/peak-cluster-ccs-analysis</a></li>
-      </ul>
+    <h2>1. Peak Cluster CCS — figures from the final thesis (2026)</h2>
+    <p class="meta">University of Manchester / MESPOM. Supervisor: Prof. Ian Kane. Mixed-methods case study: policy lock-in, Monte Carlo LCO₂A, MAC curve, social licence.</p>
+    <div class="grid">
+      <figure>
+        <a href="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png"><img src="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png" alt="Peak Cluster CO2 pipeline corridor map" /></a>
+        <figcaption>Figure 1 — Peak Cluster–Morecambe pipeline corridor and anchor cement/lime facilities (study-area map in the final thesis).</figcaption>
+      </figure>
+      <figure>
+        <a href="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png"><img src="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png" alt="Monte Carlo LCO2A distributions" /></a>
+        <figcaption>Figure 5 — Monte Carlo LCO₂A by capture technology (N=10,000). Core quantitative result: MEA median about USD 131/t versus UK ETS 2026 USD 65.2/t.</figcaption>
+      </figure>
+      <figure>
+        <a href="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png"><img src="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png" alt="UK cement MAC curve" /></a>
+        <figcaption>Figure 8 — Comparative MAC curve for the UK cement sector, with UK ETS price references.</figcaption>
+      </figure>
+      <figure>
+        <a href="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png"><img src="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png" alt="Policy lock-in heatmap" /></a>
+        <figcaption>Figure 2 — Policy-document lock-in heatmap (P01–P15), coded in NVivo 14. Corpus mean lock-in 4.4/7.</figcaption>
+      </figure>
+      <figure>
+        <a href="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png"><img src="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png" alt="Tornado sensitivity chart" /></a>
+        <figcaption>Figure 7 — Tornado sensitivity for post-combustion MEA: capture cost dominates LCO₂A uncertainty.</figcaption>
+      </figure>
+      <figure>
+        <a href="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png"><img src="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png" alt="Joint display of mixed methods" /></a>
+        <figcaption>Figure 13 — Joint display integrating policy, techno-economic and social-licence strands (final synthesis figure).</figcaption>
+      </figure>
     </div>
-
-    <h2>1. Energy economics, CCS and industrial decarbonisation</h2>
-    <p class="meta">Best for: energy analyst, climate economics, industrial policy, ETS / carbon-price research, PhD applications.</p>
     <div class="card">
-      <h3>MSc thesis (MESPOM, Distinction) — Peak Cluster CCS</h3>
-      <p class="meta">Path dependency and cement-industry decarbonisation in the UK. Monte Carlo LCO₂A (median USD 131.4/t vs UK ETS USD 65.2/t), MAC analysis, policy lock-in scoring, social-licence discourse analysis. Supervisor: Prof. Ian Kane.</p>
       <ul>
-        <li><a href="works/energy-ccs/Alhassan_Abdulai_Thesis_2026_Final.pdf">Full thesis (PDF)</a></li>
         <li><a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Thesis abstract</a></li>
         <li><a href="works/energy-ccs/Abdulai_Research_Summary.docx">Two-page research summary</a></li>
-        <li><a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Python research pipeline (numpy / pandas / matplotlib)</a></li>
-        <li>Figures: <a href="works/energy-ccs/Abdulai_Fig01_Monte_Carlo_LCO2A.jpg">Monte Carlo LCO₂A</a> · <a href="works/energy-ccs/Abdulai_Fig02_MAC_Cumulative_ETS.jpg">MAC / ETS</a> · <a href="works/energy-ccs/Abdulai_Fig03_Policy_Lockin_Heatmap.jpg">Policy lock-in</a> · <a href="works/energy-ccs/Abdulai_Fig04_Discourse_Sentiment.jpg">Discourse / SLO</a></li>
+        <li><a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Reproducible Python pipeline</a></li>
       </ul>
     </div>
 
-    <h2>2. Climate risk, drought, adaptation and GIS</h2>
-    <p class="meta">Best for: climate risk / adaptation roles, physical-risk research, drought–food security policy, GIS posts.</p>
+    <h2>2. Climate risk, drought and adaptation</h2>
     <div class="card">
-      <h3>Peer-reviewed publications</h3>
+      <p>Journal PDFs are not re-hosted (publisher copyright). Use the DOIs:</p>
       <ul>
-        <li class="doi">Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends (GIS &amp; statistical modelling). <em>Journal of Earth System Science</em>, 135, 187. <a href="https://doi.org/10.1007/s12040-026-02867-4">doi:10.1007/s12040-026-02867-4</a></li>
-        <li>Saber, M., et al., including Abdulai, A. (2025). A comprehensive review of climate change adaptation and disaster risk reduction in Africa. <em>Journal of Water and Climate Change</em>, 16(5), 1831–1862.</li>
+        <li>Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends. <em>Journal of Earth System Science</em>, 135, 187. <a href="https://doi.org/10.1007/s12040-026-02867-4">doi:10.1007/s12040-026-02867-4</a></li>
+        <li>Saber, M., Koroma, A., Posite, R. V., Ly, A., Tejan Bah, A. M., Abdulai, A., et al. (2025). Climate change adaptation and disaster risk reduction in Africa. <em>Journal of Water and Climate Change</em>, 16(5), 1831–1862. <a href="https://doi.org/10.2166/wcc.2025.741">doi:10.2166/wcc.2025.741</a></li>
       </ul>
-      <h3>Writing and methods samples</h3>
-      <ul>
-        <li><a href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief — drought and food security, northern Ghana (PDF)</a></li>
-        <li><a href="works/climate-risk/Drought%20Policy%20Paper.docx">Longer drought policy paper (DOCX)</a></li>
-        <li><a href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.docx">Extended abstract / publication plan</a></li>
-        <li><a href="works/climate-risk/create_gis_structure.py">Python helper for CMIP/RCP GIS folder structure (RCP 4.5 / 8.5)</a></li>
-      </ul>
+      <p><a href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief — drought and food security, northern Ghana (PDF)</a></p>
     </div>
 
-    <h2>3. Carbon markets, MRV and transparency</h2>
-    <p class="meta">Best for: carbon markets, Article 6, VCM integrity, climate-finance analyst roles.</p>
+    <h2>3. Carbon markets and other writing</h2>
     <div class="card">
       <ul>
-        <li><a href="works/carbon-markets/AlhassanAbdulai_PAUWES_Thesis_Blockchain_CarbonMarkets.docx">PAUWES MSc thesis — blockchain and carbon-market transparency in Africa</a></li>
-        <li><a href="works/carbon-markets/Alhassan_Abdulai_Publications_NHH.pdf">Publications list (PDF)</a></li>
-        <li><a href="works/carbon-markets/Carbon_Credit_Research_Presentation.pptx">Carbon-credit research slides</a></li>
-      </ul>
-      <p class="meta">Professional delivery (UNFCCC RCC, SEforALL/ACMI, CFC) is described on the CV; internal client files are not posted here.</p>
-    </div>
-
-    <h2>4. Policy and research writing samples</h2>
-    <p class="meta">Best for: research assistant, policy analyst, PhD / DPhil applications.</p>
-    <div class="card">
-      <ul>
-        <li><a href="works/policy-writing/AlhassanAbdulai_Thesis_Abstract_Short.docx">Short thesis abstract</a></li>
-        <li><a href="works/policy-writing/Alhassan_Abdulai_Research_Proposal_NHH_1.pdf">Research proposal (writing sample, PDF)</a></li>
-        <li>Siddique, H. A., Kanagie, A., &amp; Abdulai, A. (2024). Echoes of the past: Power and colonial impact on contemporary climate politics. In <em>Climate change and environmental politics</em> (pp. 141–166). Transnational Press London.</li>
+        <li><a href="works/carbon-markets/Alhassan_Abdulai_Publications_NHH.pdf">Publications list</a></li>
+        <li>PAUWES MSc (blockchain and carbon-market transparency, 2024) — full text not posted; available on request.</li>
+        <li>BSc Agribusiness dissertation (effects of climate change on irrigated agriculture in northern Ghana, UDS 2019) — not on this machine in a genuine file; Google Drive is not synced here. Send a Drive link and it can be added as abstract + selected figures only.</li>
       </ul>
     </div>
   </main>
   <footer>
-    <p>Alhassan Abdulai · public portfolio · last assembled August 2026. Hosted on GitHub Pages.</p>
+    <p>Figures extracted from the final submitted MESPOM thesis PDF (August 2026). Full thesis withheld from this site by design.</p>
   </footer>
 </body>
 </html>
