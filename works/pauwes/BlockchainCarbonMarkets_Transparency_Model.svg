@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <style>
+    .font { font-family: Arial, Helvetica, sans-serif; }
+    .title { font-size: 20px; font-weight: 700; fill: #12263a; }
+    .sub { font-size: 12px; font-weight: 700; fill: #b08d3a; letter-spacing: .06em; text-transform: uppercase; }
+    .label { font-size: 13px; fill: #1c2430; font-weight: 700; }
+    .text { font-size: 12.5px; fill: #1c2430; }
+    .muted { font-size: 12px; fill: #5c6774; }
+    .box { fill: #ffffff; stroke: #d7dde5; stroke-width: 2; }
+    .box2 { fill: #f7f9fb; stroke: #d7dde5; stroke-width: 2; }
+    .line { stroke: #d7dde5; stroke-width: 2; }
+    .arrow { stroke: #12263a; stroke-width: 2.5; fill: none; marker-end: url(#arrowHead); }
+  </style>
+
+  <defs>
+    <marker id="arrowHead" markerWidth="10" markerHeight="7" refX="8.5" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#12263a" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="20" y="20" width="940" height="520" rx="14" ry="14"/>
+
+  <text class="sub font" x="60" y="64">PAUWES thesis (MSc Climate Change Engineering)</text>
+  <text class="title font" x="60" y="95">Blockchain-enabled transparent carbon markets in Africa</text>
+  <text class="muted font" x="60" y="122">Conceptual output + method flow (public chart; thesis content not re-hosted)</text>
+
+  <!-- Left column: Decision frameworks -->
+  <rect class="box2" x="60" y="160" width="360" height="155" rx="12" ry="12"/>
+  <text class="label font" x="85" y="195">Research method</text>
+
+  <text class="text font" x="85" y="220">1) DFE  Decision Framework Evaluation</text>
+  <text class="muted font" x="105" y="245">Regulatory fit; data security; cost-effectiveness</text>
+  <text class="text font" x="85" y="273">2) DEMATEL  enabler model</text>
+  <text class="muted font" x="105" y="298">Causal links + prioritised adoption factors</text>
+
+  <!-- Middle column: Infrastructure design -->
+  <rect class="box2" x="450" y="160" width="470" height="155" rx="12" ry="12"/>
+  <text class="label font" x="475" y="195">Infrastructure blueprint</text>
+
+  <text class="text font" x="475" y="220">" Blockchain-backed carbon market model</text>
+  <text class="muted font" x="500" y="245">Aligned to UNFCCC monitoring and reporting architecture</text>
+  <text class="text font" x="475" y="273">" Smart contracts + data integration</text>
+  <text class="muted font" x="500" y="298">Transparent asset &amp; transaction records; double-counting controls</text>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M420 236 C435 236, 436 236, 448 236" />
+  <path class="arrow" d="M420 275 C435 275, 436 275, 448 275" />
+
+  <!-- Right column: Case study and outcomes -->
+  <rect class="box2" x="60" y="335" width="860" height="165" rx="12" ry="12"/>
+  <text class="label font" x="85" y="370">Conceptual output and study areas</text>
+
+  <text class="text font" x="85" y="400">Outputs:</text>
+  <text class="muted font" x="105" y="426">" Enhanced transparency, auditability and transaction integrity</text>
+  <text class="muted font" x="105" y="448">" Progress monitoring for NDC implementation and company targets</text>
+
+  <text class="text font" x="540" y="400">Study areas:</text>
+  <text class="muted font" x="560" y="426">" UNFCCC RCC (Kampala)  regulatory and implementation context</text>
+  <text class="muted font" x="560" y="448">" CYNK (Kenya)  end-to-end blockchain carbon credit platform</text>
+
+  <path class="arrow" d="M210 315 C210 325, 210 325, 210 335" />
+  <path class="arrow" d="M700 315 C700 325, 700 325, 700 335" />
+
+  <text class="muted font" x="60" y="520">Thesis title: The Role of Blockchain in Establishing and Enabling Transparent Carbon Markets in Africa (MSc proposal / framework)</text>
+</svg>
+
