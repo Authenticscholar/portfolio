@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alhassan Abdulai — climate finance and carbon markets professional. MRV systems, policy design, and market integrity across Africa and Europe." />
   <title>Alhassan Abdulai — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{
       --bg:#fbfbf7;
@@ -22,7 +26,7 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       line-height:1.7;
     }
     a{ color:var(--accent2); text-decoration:none; }
@@ -81,9 +85,13 @@
     .nav-links{
       display:flex;
       align-items:center;
-      gap:18px;
+      gap:14px;
       flex-wrap:wrap;
       justify-content:flex-end;
+    }
+    @media (max-width:720px){
+      .nav-links{ display:none; }
+      .nav-inner{ padding:12px 14px; }
     }
     .nav-links a{
       color:var(--muted);
@@ -149,9 +157,11 @@
     .hero-text{ max-width:720px; }
     .hero h1{
       margin:0 0 10px;
+      font-family:Fraunces, Georgia, "Times New Roman", serif;
       font-size:3rem;
       line-height:1.08;
       letter-spacing:-.03em;
+      font-weight:700;
     }
     .positioning{
       font-size:1.05rem;
@@ -336,6 +346,7 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#impact">Impact</a>
+        <a href="#recognition">Recognition</a>
         <a href="#publications">Publications</a>
         <a href="#contact">Contact</a>
       </div>
@@ -347,8 +358,8 @@
     <div class="container hero-inner">
       <div class="hero-text reveal">
         <h1>Alhassan Abdulai</h1>
-        <p class="positioning">Carbon markets and MRV systems professional bridging policy incentives and transaction integrity.</p>
-        <p class="base">Manchester, United Kingdom · UK Graduate Visa (right to work)</p>
+        <p class="positioning">Bridges carbon-market architecture, MRV integrity, and policy design for investable climate outcomes.</p>
+        <p class="base">Vienna, Austria · EU mobility · UK Graduate Visa (right to work)</p>
         <div class="hero-actions">
           <a class="btn" href="mailto:abdulaia549@gmail.com">Get in touch</a>
           <a class="btn" href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169/" target="_blank" rel="noopener">LinkedIn</a>
@@ -363,8 +374,8 @@
         <h2 class="reveal">About</h2>
         <div class="text reveal">
           <p>Alhassan Abdulai is a climate finance and carbon markets professional focused on integrity-first systems for measurement, reporting, and market participation. He connects technical MRV design, policy incentives, and governance requirements so projects and decision-makers can move from data to trusted action.</p>
-          <p>His experience spans international climate and investment stakeholders, including UNFCCC collaboration work, program operations for carbon market infrastructure, and technical support for monitoring frameworks across land-use and mitigation initiatives. He builds decision-ready outputs—clear briefs, reproducible analysis workflows, and stakeholder materials that translate evidence into implementation.</p>
-          <p>His academic work delivered both public research exhibits and decision-oriented models on industrial decarbonisation and carbon-market transparency. Across roles, he prioritises auditability, defensible assumptions, and practical pathways for climate outcomes.</p>
+          <p>He holds an Erasmus Mundus MSc in Environmental Sciences, Policy and Management (Distinction, GPA 3.73) across Central European University, the University of the Aegean, and the University of Manchester, complemented by an MSc in Climate Change Engineering from PAUWES and a First Class BSc in Agribusiness from Ghana. That combination grounds his work in market design, geospatial analysis, and field delivery.</p>
+          <p>Professionally, he has supported UNFCCC transparency work, SEforALL’s Africa Carbon Markets Initiative, and climate-finance programme delivery with the Common Fund for Commodities. He builds decision-ready outputs—briefs, stakeholder materials, and reproducible analysis—that translate evidence into implementation without sacrificing auditability.</p>
         </div>
       </div>
     </section>
@@ -444,11 +455,10 @@
           <article class="impact-card card reveal">
             <div class="impact-head">
               <div>
-                <h3 class="impact-title">Translated climate-risk evidence into a policy-ready drought and food-security brief</h3>
-                <p class="impact-desc">Packaged consecutive-drought context and decision considerations for stakeholders working on food security in northern Ghana.</p>
+                <h3 class="impact-title">Mapped African climate-zone shifts for decision-ready risk screening</h3>
+                <p class="impact-desc">Presented CMIP5-based projection work at the University of the Aegean, quantifying temperature, precipitation, and dryness trends to support hotspot identification—work that informed a peer-reviewed publication on African climate trends.</p>
                 <div class="link-row">
-                  <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief (PDF)</a>
-                  <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.pdf">Publication plan (PDF)</a>
+                  <a class="link-pill" href="https://doi.org/10.1007/s12040-026-02867-4" target="_blank" rel="noopener">Related publication (DOI)</a>
                 </div>
               </div>
             </div>
@@ -457,31 +467,33 @@
           <article class="impact-card card reveal">
             <div class="impact-head">
               <div>
-                <h3 class="impact-title">Delivered climate-action and green-entrepreneurship training for 300+ youth</h3>
-                <p class="impact-desc">Built facilitation plans for HerStart, led multi-stakeholder workshops, and supported mentorship pathways for emerging ventures.</p>
+                <h3 class="impact-title">Built and delivered HerStart climate and entrepreneurship programmes for 300+ youth</h3>
+                <p class="impact-desc">Led 15 multi-stakeholder workshops for Youth Challenge International in Ghana, combining climate action training with green-entrepreneurship mentoring and pathways to venture funding.</p>
               </div>
             </div>
           </article>
         </div>
 
         <div class="card reveal" style="margin-top:14px;">
-          <h3 class="impact-title" style="margin:0;">Full document access</h3>
-          <p class="impact-desc" style="margin-top:8px;">Additional thesis writing and publication materials are available via the document links below.</p>
+          <h3 class="impact-title" style="margin:0;">Supporting documents</h3>
+          <p class="impact-desc" style="margin-top:8px;">Thesis writing, policy briefs, and publication materials.</p>
           <div class="link-row">
+            <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Drought policy brief</a>
             <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Thesis abstract (Word)</a>
             <a class="link-pill" href="works/policy-writing/AlhassanAbdulai_Thesis_Abstract_Short.pdf">Short abstract (PDF)</a>
             <a class="link-pill" href="works/policy-writing/AlhassanAbdulai_Thesis_Abstract_Short.docx">Short abstract (Word)</a>
+            <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.pdf">Publication plan (PDF)</a>
             <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.docx">Publication plan (Word)</a>
-            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publication list (PDF)</a>
-            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Publication list (Word)</a>
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publications list (PDF)</a>
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Publications list (Word)</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section id="recognition" class="section">
       <div class="container">
-        <h2 id="recognition" class="reveal">Recognition</h2>
+        <h2 class="reveal">Recognition</h2>
         <div class="award-row reveal" role="list" aria-label="Awards and recognition">
           <div class="award" role="listitem">Schneider Electric Go Green Challenge — Global Winner (2025)</div>
           <div class="award" role="listitem">Geneva Challenge — 2nd Place globally (1st in Africa) (2023)</div>
@@ -510,14 +522,9 @@
           </li>
         </ul>
 
-        <div class="card reveal" style="margin-top:14px;">
-          <h3 class="impact-title" style="margin:0;">Full publications list</h3>
-          <p class="impact-desc" style="margin-top:8px;">For recruiter review, this page keeps abstracts off the surface; full documentation is available as a separate file.</p>
-          <div class="link-row">
-            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publications list (PDF)</a>
-            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Publications list (Word)</a>
-          </div>
-        </div>
+        <p class="text reveal" style="margin-top:14px; color:var(--muted); font-size:.95rem;">
+          Full list: <a href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">PDF</a> · <a href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Word</a>
+        </p>
       </div>
     </section>
 
@@ -546,7 +553,7 @@
 
     <div class="footer">
       <div class="container">
-        Built for fast recruiter review: concise leadership-style positioning, with technical detail available through the linked briefs and documents.
+        Alhassan Abdulai · Climate finance &amp; carbon markets · abdulaia549@gmail.com
       </div>
     </div>
   </main>
