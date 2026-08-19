@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alhassan Abdulai — physical climate risk, adaptation, and geospatial analysis. Drought, flood exposure, and policy-ready evidence for Africa and Europe." />
+  <title>Alhassan Abdulai — Climate Risk Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#fbfbf7;
+      --paper:#ffffff;
+      --text:#1a1f28;
+      --muted:#5c6774;
+      --line:#e6e9ef;
+      --accent:#1a3a2e;
+      --accent2:#2d6a4f;
+      --shadow:0 1px 0 rgba(26,31,40,.04);
+      --radius:14px;
+    }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height:1.7;
+    }
+    a{ color:var(--accent2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px; top:16px; width:auto; height:auto; padding:10px 12px;
+      background:var(--paper); border:1px solid var(--line); border-radius:10px; z-index:50; text-decoration:none;
+    }
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      background:rgba(251,251,247,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      max-width:1080px; margin:0 auto; padding:14px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      font-weight:800; color:var(--text); letter-spacing:-.01em; text-decoration:none; white-space:nowrap;
+    }
+    .nav-links{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
+    @media (max-width:720px){ .nav-links{ display:none; } .nav-inner{ padding:12px 14px; } }
+    .nav-links a{ color:var(--muted); font-weight:650; font-size:.95rem; text-decoration:none; }
+    .nav-links a:hover{ text-decoration:none; color:var(--accent); }
+    .cta{
+      background:var(--accent); color:#fff; font-weight:800; padding:10px 14px;
+      border-radius:12px; text-decoration:none; box-shadow:var(--shadow); white-space:nowrap;
+    }
+    .cta:hover{ text-decoration:none; background:#143024; }
+    .container{ max-width:720px; margin:0 auto; padding:0 16px; }
+    .section{ padding:88px 0; }
+    .section:first-of-type{ padding-top:64px; }
+    h2{
+      font-size:1.05rem; letter-spacing:.14em; text-transform:uppercase;
+      margin:0 0 18px; color:var(--accent);
+    }
+    .reveal{ opacity:0; transform:translateY(10px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.in-view{ opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal{ transition:none; opacity:1; transform:none; }
+    }
+    .hero{ padding:44px 0 14px; }
+    .hero h1{
+      margin:0 0 10px;
+      font-family:Fraunces, Georgia, "Times New Roman", serif;
+      font-size:3rem; line-height:1.08; letter-spacing:-.03em; font-weight:700;
+    }
+    .positioning{ font-size:1.05rem; color:var(--muted); margin:0 0 18px; max-width:68ch; }
+    .base{ margin:0 0 18px; font-weight:650; color:var(--text); }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:8px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--paper); border:1px solid var(--line); color:var(--accent);
+      font-weight:850; padding:12px 14px; border-radius:12px; text-decoration:none; box-shadow:var(--shadow);
+    }
+    .btn:hover{ text-decoration:none; border-color:#d6dde9; }
+    .card{
+      background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:18px;
+    }
+    .text{ max-width:68ch; }
+    .text p{ margin:0 0 14px; }
+    .text p:last-child{ margin-bottom:0; }
+    .impact-grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:14px; }
+    @media (min-width:860px){ .impact-grid{ grid-template-columns:1fr 1fr; } }
+    .impact-title{ margin:0; font-size:1.02rem; letter-spacing:-.01em; }
+    .impact-desc{ margin:8px 0 0; color:var(--muted); }
+    .link-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .link-pill{
+      display:inline-flex; align-items:center; padding:9px 12px; border-radius:999px;
+      border:1px solid var(--line); background:#fff; color:var(--accent);
+      font-weight:800; font-size:.92rem; text-decoration:none;
+    }
+    .link-pill:hover{ text-decoration:none; border-color:#d6dde9; }
+    .timeline{
+      margin-top:14px; border-left:2px solid var(--line); padding-left:14px; display:grid; gap:14px;
+    }
+    .t-item{ position:relative; }
+    .t-item::before{
+      content:''; position:absolute; left:-20px; top:10px; width:10px; height:10px;
+      border-radius:50%; background:var(--accent); border:2px solid var(--bg);
+    }
+    .t-title{ margin:0; font-weight:900; letter-spacing:-.01em; }
+    .t-meta{ margin:6px 0 0; color:var(--muted); font-weight:700; }
+    .t-line{ margin:10px 0 0; max-width:68ch; }
+    .award-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .award{
+      border:1px solid var(--line); background:#fff; border-radius:999px;
+      padding:10px 12px; font-weight:800; color:var(--accent); font-size:.93rem;
+    }
+    ul.pub-list{ list-style:none; padding:0; margin:14px 0 0; }
+    .pub{ padding:14px 16px; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+    .pub + .pub{ margin-top:12px; }
+    .pub .cite{ font-weight:850; margin:0 0 6px; }
+    .pub .meta{ color:var(--muted); margin:0; }
+    .contact-grid{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:14px; }
+    @media (min-width:860px){ .contact-grid{ grid-template-columns:1.2fr .8fr; } }
+    .contact p{ margin:0 0 10px; }
+    .footer{ border-top:1px solid var(--line); padding:22px 0 40px; color:var(--muted); font-size:.92rem; }
+    section[id]{ scroll-margin-top:92px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <nav class="topbar" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Alhassan Abdulai</a>
+      <div class="nav-links" role="navigation" aria-label="Page sections">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#impact">Impact</a>
+        <a href="#recognition">Recognition</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="cta" href="AlhassanAbdulai_CV_ClimateRisk_2026.pdf" download>Download CV</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="reveal">
+        <h1>Alhassan Abdulai</h1>
+        <p class="positioning">Turns climate projections and geospatial evidence into adaptation and risk decisions that hold up under scrutiny.</p>
+        <p class="base">Vienna, Austria · EU mobility</p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:abdulaia549@gmail.com">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="reveal">About</h2>
+        <div class="text reveal">
+          <p>Alhassan Abdulai works at the intersection of physical climate risk, geospatial analysis, and adaptation policy. He builds evidence on drought, rainfall, and temperature trends, translates projections into decision-ready formats, and supports stakeholders who need defensible risk information—not speculative narratives.</p>
+          <p>His training spans an Erasmus Mundus MSc (Distinction, GPA 3.73) at Central European University, the University of the Aegean, and the University of Manchester, an MSc in Climate Change Engineering from PAUWES, and a First Class BSc in Agribusiness with a climate and food-security focus. That arc combines climate modelling, GIS, quantitative methods, and field delivery experience.</p>
+          <p>He has co-authored peer-reviewed work on African climate hotspots and adaptation/disaster-risk reduction, produced policy briefs on drought and food security in northern Ghana, and delivered GIS-based environmental risk assessments for multilateral programme portfolios. His outputs are designed for planners, researchers, and funders who need clarity under uncertainty.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="reveal">Experience</h2>
+        <div class="timeline reveal" aria-label="Experience timeline">
+          <article class="t-item">
+            <h3 class="t-title">Climate Risk &amp; GIS Consultant — Common Fund for Commodities &amp; Forestry and Land Check</h3>
+            <p class="t-meta">Jul 2025 – Oct 2025 · Remote</p>
+            <p class="t-line">Produced GIS-based environmental analysis and risk assessments across five project locations and synthesised 20+ technical reports into KPI packs for a USD 75M land-use outcomes fund.</p>
+          </article>
+
+          <article class="t-item">
+            <h3 class="t-title">Intern — Climate Transparency — UNFCCC Regional Collaboration Centre (East &amp; Southern Africa)</h3>
+            <p class="t-meta">Jul 2023 – Feb 2024 · Kampala / Remote</p>
+            <p class="t-line">Analysed 15+ national GHG inventories and Biennial Update Reports, identified data gaps affecting climate reporting quality, and supported synthesis for Enhanced Transparency Framework transition.</p>
+          </article>
+
+          <article class="t-item">
+            <h3 class="t-title">National Climate Action Fellow — Youth Challenge International (HerStart)</h3>
+            <p class="t-meta">Feb 2021 – May 2022 · Ghana</p>
+            <p class="t-line">Reviewed 20 national climate policy documents, delivered climate-action training to 300+ participants, and facilitated 15 multi-stakeholder workshops on adaptation-oriented programming.</p>
+          </article>
+
+          <article class="t-item">
+            <h3 class="t-title">Project Assistant — Innovations for Poverty Action (Escaping Poverty Project)</h3>
+            <p class="t-meta">Sep 2019 – Feb 2021 · Ghana</p>
+            <p class="t-line">Coordinated multi-site field research operations for a randomised evaluation, supervised field teams, and maintained tracking systems for a 1,300-participant cohort—experience directly relevant to household vulnerability and response data.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section">
+      <div class="container">
+        <h2 class="reveal">Selected impact</h2>
+        <div class="impact-grid">
+          <article class="card reveal">
+            <h3 class="impact-title">Quantified African climate hotspots for rainfall, temperature, and drought trends</h3>
+            <p class="impact-desc">Co-authored a GIS and statistical modelling study published in the Journal of Earth System Science, supporting regional screening of physical climate risk and trend detection.</p>
+            <div class="link-row">
+              <a class="link-pill" href="https://doi.org/10.1007/s12040-026-02867-4" target="_blank" rel="noopener">Publication (DOI)</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="impact-title">Mapped climate-zone shifts under CMIP5 scenarios for risk screening</h3>
+            <p class="impact-desc">Presented projection work at the University of the Aegean on temperature, precipitation, and dryness trends (1950–2100), using Köppen–Geiger classification and automated geospatial workflows.</p>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="impact-title">Packaged drought and food-security evidence for northern Ghana</h3>
+            <p class="impact-desc">Authored a policy brief connecting consecutive-drought threats to agriculture-dependent livelihoods and adaptation options for regional decision-makers.</p>
+            <div class="link-row">
+              <a class="link-pill" href="../works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief (PDF)</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="impact-title">Synthesised adaptation and disaster-risk reduction evidence across Africa</h3>
+            <p class="impact-desc">Co-authored a comprehensive review in the Journal of Water and Climate Change on how adaptation measures reduce risk under climate stress—framing options for policy and programme design.</p>
+            <div class="link-row">
+              <a class="link-pill" href="https://doi.org/10.2166/wcc.2025.741" target="_blank" rel="noopener">Publication (DOI)</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="recognition" class="section">
+      <div class="container">
+        <h2 class="reveal">Recognition</h2>
+        <div class="award-row reveal" role="list" aria-label="Awards and recognition">
+          <div class="award" role="listitem">Stanford Global Sustainability Challenge — Top 6 (2026) · Adaptation &amp; Resilience</div>
+          <div class="award" role="listitem">Geneva Challenge — 2nd Place globally (1st in Africa) (2023)</div>
+          <div class="award" role="listitem">Erasmus Mundus Scholarship (2024)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <h2 class="reveal">Publications</h2>
+        <ul class="pub-list" aria-label="Selected publications">
+          <li class="pub reveal">
+            <p class="cite">Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends.</p>
+            <p class="meta">Journal of Earth System Science · 135 · 187 · <a href="https://doi.org/10.1007/s12040-026-02867-4" target="_blank" rel="noopener">doi:10.1007/s12040-026-02867-4</a></p>
+          </li>
+          <li class="pub reveal">
+            <p class="cite">Saber, M., Koroma, A., Posite, R. V., Ly, A., Tejan Bah, A. M., Abdulai, A., et al. (2025). Climate change adaptation and disaster risk reduction in Africa.</p>
+            <p class="meta">Journal of Water and Climate Change · 16(5) · 1831–1862 · <a href="https://doi.org/10.2166/wcc.2025.741" target="_blank" rel="noopener">doi:10.2166/wcc.2025.741</a></p>
+          </li>
+          <li class="pub reveal">
+            <p class="cite">Siddique, H. A., Kanagie, A., &amp; Abdulai, A. (2024). Echoes of the past: Power and colonial impact on contemporary climate politics.</p>
+            <p class="meta">In Climate change and environmental politics (pp. 141–166) · Transnational Press London</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="reveal">Contact</h2>
+        <div class="contact-grid">
+          <div class="card contact reveal">
+            <p><strong>Email</strong>: <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a></p>
+            <p><strong>LinkedIn</strong>: <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169/" target="_blank" rel="noopener">linkedin.com/in/alhassan-abdulai-1a9198169</a></p>
+            <p><strong>CV</strong>: <a href="AlhassanAbdulai_CV_ClimateRisk_2026.pdf" download>Download PDF</a> · <a href="AlhassanAbdulai_CV_ClimateRisk_2026.docx">Word</a></p>
+          </div>
+          <div class="card contact reveal">
+            <p><strong>Policy brief</strong></p>
+            <p style="margin-top:10px;">Drought and food security, northern Ghana.</p>
+            <div class="link-row">
+              <a class="link-pill" href="../works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="container">
+        Alhassan Abdulai · Climate risk &amp; adaptation · <a href="../">Carbon markets portfolio</a> · abdulaia549@gmail.com
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      var supportsIO = (typeof IntersectionObserver !== 'undefined');
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if(!supportsIO){
+        for(var i=0;i<revealEls.length;i++){ revealEls[i].classList.add('in-view'); }
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      revealEls.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+</body>
+</html>

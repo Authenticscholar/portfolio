@@ -1,7 +1,9 @@
-# Alhassan Abdulai — portfolio
+# Alhassan Abdulai — portfolios
 
-Live site: **https://authenticscholar.github.io/portfolio/**
+**Carbon markets (primary):** https://authenticscholar.github.io/portfolio/
 
-Executive-style personal portfolio for recruiter review. Technical briefs, thesis abstracts, policy notes, and publication lists are linked from the Selected impact and Supporting documents sections.
+**Climate risk (adaptation / geospatial):** https://authenticscholar.github.io/portfolio/climate-risk/
 
-Research code: https://github.com/Authenticscholar/peak-cluster-ccs-analysis
+Both are static GitHub Pages sites. The climate-risk version omits carbon-market and MRV positioning for roles where physical risk, adaptation, and GIS evidence are the focus.
+
+Research code (Peak Cluster CCS): https://github.com/Authenticscholar/peak-cluster-ccs-analysis
