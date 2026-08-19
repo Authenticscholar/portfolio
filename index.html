@@ -1,189 +1,574 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" id="top">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alhassan Abdulai — Selected research exhibits</title>
+  <title>Alhassan Abdulai — Portfolio</title>
   <style>
-    :root {
-      --navy:#12263a;
-      --ink:#1c2430;
+    :root{
+      --bg:#fbfbf7;
+      --paper:#ffffff;
+      --text:#1a1f28;
       --muted:#5c6774;
-      --line:#d7dde5;
-      --paper:#fff;
-      --bg:#eef1f5;
-      --gold:#b08d3a;
+      --line:#e6e9ef;
+      --accent:#12263a;
+      --accent2:#1a4f86;
+      --shadow:0 1px 0 rgba(26,31,40,.04);
+      --radius:14px;
     }
-    * { box-sizing:border-box; }
-    body { margin:0; background:var(--bg); color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.5; }
-    .bar { background:var(--navy); color:#fff; }
-    .wrap { max-width:1080px; margin:0 auto; padding:0 1.4rem; }
-    header { padding:2.4rem 0 1.6rem; }
-    .kicker { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#c9b07a; margin:0 0 .55rem; }
-    h1 { margin:0 0 .45rem; font-size:2rem; font-weight:700; letter-spacing:.01em; }
-    .affil { font-size:.92rem; color:#d5dde6; max-width:48rem; margin:.35rem 0; }
-    .contact { margin-top:.85rem; font-size:.88rem; }
-    .contact a { color:#e8eef5; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.25); }
-    .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid rgba(255,255,255,.12); }
-    .kpi { padding:1rem 1.15rem 1.15rem; border-right:1px solid rgba(255,255,255,.12); }
-    .kpi:last-child { border-right:0; }
-    .kpi b { display:block; font-size:1.18rem; }
-    .kpi span { display:block; font-size:.72rem; color:#b8c4d1; margin-top:.2rem; letter-spacing:.04em; text-transform:uppercase; }
-    @media (max-width:800px) { .kpis { grid-template-columns:1fr 1fr; } .kpi { border-bottom:1px solid rgba(255,255,255,.12); } }
-    main { padding:2rem 0 3.2rem; }
-    h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--navy); margin:2rem 0 .8rem; }
-    .intro { background:var(--paper); border:1px solid var(--line); border-top:3px solid var(--gold); padding:1.15rem 1.25rem; margin-bottom:1.2rem; }
-    .grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    @media (max-width:800px) { .grid { grid-template-columns:1fr; } }
-    figure { margin:0; background:var(--paper); border:1px solid var(--line); }
-    figure img { width:100%; display:block; }
-    figcaption { padding:.8rem .95rem 1rem; font-size:.84rem; color:var(--muted); }
-    figcaption strong { color:var(--navy); display:block; margin-bottom:.2rem; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
-    .docs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
-    @media (max-width:800px) { .docs { grid-template-columns:1fr; } }
-    .doc { background:var(--paper); border:1px solid var(--line); padding:1rem 1.05rem; }
-    .doc a { color:var(--navy); font-weight:700; text-decoration:none; }
-    .doc p { margin:.4rem 0 0; font-size:.86rem; color:var(--muted); }
-    .doc strong { color:var(--navy); display:block; font-size:.9rem; margin-bottom:.15rem; }
-    .doc img { width:100%; display:block; margin:.7rem 0 .55rem; border:1px solid var(--line); border-radius:10px; background:var(--paper); }
-    .pubs li { margin:.45rem 0; }
-    a { color:#1a4f86; }
-    footer { border-top:1px solid var(--line); padding:1.2rem 0 2.2rem; font-size:.8rem; color:var(--muted); }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height:1.7;
+    }
+    a{ color:var(--accent2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .skip-link{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+      width:auto;
+      height:auto;
+      padding:10px 12px;
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:10px;
+      z-index:50;
+      text-decoration:none;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(251,251,247,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      max-width:1080px;
+      margin:0 auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--text);
+      letter-spacing:-.01em;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .brand:focus{ outline:2px solid rgba(18,38,58,.35); outline-offset:3px; border-radius:10px; }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      color:var(--muted);
+      font-weight:650;
+      font-size:.95rem;
+      text-decoration:none;
+    }
+    .nav-links a:hover{ text-decoration:none; color:var(--accent); }
+
+    .cta{
+      background:var(--accent);
+      color:#fff;
+      font-weight:800;
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .cta:hover{ text-decoration:none; background:#0f2031; }
+    .cta:focus{ outline:2px solid rgba(18,38,58,.35); outline-offset:3px; }
+
+    .container{
+      max-width:720px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+    .section{
+      padding:88px 0;
+    }
+    .section:first-of-type{ padding-top:64px; }
+    h2{
+      font-size:1.05rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin:0 0 18px;
+      color:var(--accent);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.in-view{
+      opacity:1;
+      transform:none;
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal{ transition:none; opacity:1; transform:none; }
+    }
+
+    .hero{
+      padding:44px 0 14px;
+    }
+    .hero-inner{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .hero-text{ max-width:720px; }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:3rem;
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+    .positioning{
+      font-size:1.05rem;
+      color:var(--muted);
+      margin:0 0 18px;
+      max-width:68ch;
+    }
+    .base{
+      margin:0 0 18px;
+      font-weight:650;
+      color:var(--text);
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:8px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background:var(--paper);
+      border:1px solid var(--line);
+      color:var(--accent);
+      font-weight:850;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      box-shadow:var(--shadow);
+    }
+    .btn:hover{ text-decoration:none; border-color:#d6dde9; }
+    .btn:focus{ outline:2px solid rgba(18,38,58,.35); outline-offset:3px; }
+
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+    .text{ max-width:68ch; }
+    .text p{ margin:0 0 14px; color:var(--text); }
+    .text p:last-child{ margin-bottom:0; }
+
+    .impact-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (min-width:860px){
+      .impact-grid{ grid-template-columns:1fr 1fr; }
+    }
+
+    .impact-card{
+      display:grid;
+      gap:12px;
+    }
+    .impact-head{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .impact-thumb{
+      flex:0 0 130px;
+      width:130px;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--bg);
+    }
+    .impact-thumb img{ width:100%; height:auto; display:block; }
+    .impact-title{
+      margin:0;
+      font-size:1.02rem;
+      letter-spacing:-.01em;
+    }
+    .impact-desc{ margin:8px 0 0; color:var(--muted); }
+
+    .link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+    .link-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--accent);
+      font-weight:800;
+      font-size:.92rem;
+      text-decoration:none;
+    }
+    .link-pill:hover{ text-decoration:none; border-color:#d6dde9; }
+
+    .timeline{
+      margin-top:14px;
+      border-left:2px solid var(--line);
+      padding-left:14px;
+      display:grid;
+      gap:14px;
+    }
+    .t-item{ position:relative; }
+    .t-item::before{
+      content:'';
+      position:absolute;
+      left:-20px;
+      top:10px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--accent);
+      border:2px solid var(--bg);
+    }
+    .t-title{ margin:0; font-weight:900; letter-spacing:-.01em; }
+    .t-meta{ margin:6px 0 0; color:var(--muted); font-weight:700; }
+    .t-line{ margin:10px 0 0; color:var(--text); max-width:68ch; }
+
+    .award-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .award{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:10px 12px;
+      font-weight:800;
+      color:var(--accent);
+      font-size:.93rem;
+    }
+
+    ul.pub-list{ list-style:none; padding:0; margin:14px 0 0; }
+    .pub{
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#fff;
+    }
+    .pub + .pub{ margin-top:12px; }
+    .pub .cite{ font-weight:850; margin:0 0 6px; }
+    .pub .meta{ color:var(--muted); margin:0; }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (min-width:860px){
+      .contact-grid{ grid-template-columns:1.2fr .8fr; }
+    }
+    .contact p{ margin:0 0 10px; color:var(--text); }
+
+    .footer{
+      border-top:1px solid var(--line);
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    section[id]{ scroll-margin-top:92px; }
   </style>
 </head>
 <body>
-  <div class="bar">
-    <div class="wrap">
-      <header>
-        <p class="kicker">Selected research exhibits</p>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <nav class="topbar" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Alhassan Abdulai</a>
+      <div class="nav-links" role="navigation" aria-label="Page sections">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#impact">Impact</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="cta" href="AlhassanAbdulai_CV_Master_2026.pdf" download>Download CV</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
         <h1>Alhassan Abdulai</h1>
-        <p class="affil">
-          <strong>MESPOM</strong> — MSc Environmental Sciences, Policy and Management, Erasmus Mundus Joint Master’s (Distinction, GPA 3.73, 2026).<br />
-          Universities attended: Central European University (Vienna) · University of the Aegean (Lesvos) · University of Manchester.
-        </p>
-        <p class="affil">
-          Also: MSc Climate Change Engineering, Pan African University / Université Abou Bekr Belkaïd (PAUWES) · BSc Agribusiness, First Class, University for Development Studies (Ghana).
-        </p>
-        <p class="contact">
-          <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a>
-          &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169">LinkedIn</a>
-          &nbsp;·&nbsp; <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Replication code</a>
-        </p>
-      </header>
-    </div>
-    <div class="wrap">
-      <div class="kpis">
-        <div class="kpi"><b>USD 131.4 / t</b><span>Median LCO₂A (MEA)</span></div>
-        <div class="kpi"><b>USD 65.2 / t</b><span>UK ETS 2026 reference</span></div>
-        <div class="kpi"><b>4.4 / 7</b><span>Mean policy lock-in</span></div>
-        <div class="kpi"><b>N = 10,000</b><span>Monte Carlo draws</span></div>
+        <p class="positioning">Carbon markets and MRV systems professional bridging policy incentives and transaction integrity.</p>
+        <p class="base">Manchester, United Kingdom · UK Graduate Visa (right to work)</p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:abdulaia549@gmail.com">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <main class="wrap">
-    <h2>Peak Cluster CCS — United Kingdom</h2>
-    <div class="intro">
-      Mixed-methods case study of industrial CCS in the UK cement and lime sector (supervisor: Prof. Ian Kane, University of Manchester).
-      Policy lock-in, techno-economic modelling and social licence are integrated in a joint display.
-      Exhibits are taken from the <em>final submitted MESPOM thesis</em>. The full dissertation is available on request and is not hosted here.
-    </div>
+  <main>
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="reveal">About</h2>
+        <div class="text reveal">
+          <p>Alhassan Abdulai is a climate finance and carbon markets professional focused on integrity-first systems for measurement, reporting, and market participation. He connects technical MRV design, policy incentives, and governance requirements so projects and decision-makers can move from data to trusted action.</p>
+          <p>His experience spans international climate and investment stakeholders, including UNFCCC collaboration work, program operations for carbon market infrastructure, and technical support for monitoring frameworks across land-use and mitigation initiatives. He builds decision-ready outputs—clear briefs, reproducible analysis workflows, and stakeholder materials that translate evidence into implementation.</p>
+          <p>His academic work delivered both public research exhibits and decision-oriented models on industrial decarbonisation and carbon-market transparency. Across roles, he prioritises auditability, defensible assumptions, and practical pathways for climate outcomes.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="grid">
-      <figure>
-        <a href="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png"><img src="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png" alt="Peak Cluster pipeline map" /></a>
-        <figcaption><strong>Exhibit 1 · Study area</strong> Pipeline corridor and anchor cement/lime facilities, North West England (final thesis Figure 1).</figcaption>
-      </figure>
-      <figure>
-        <a href="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png"><img src="works/energy-ccs/figures/Figure05_MonteCarlo_LCO2A.png" alt="Monte Carlo LCO2A" /></a>
-        <figcaption><strong>Exhibit 2 · Cost uncertainty</strong> Monte Carlo LCO₂A by capture technology (final thesis Figure 5). MEA median USD 131.4/t versus UK ETS USD 65.2/t.</figcaption>
-      </figure>
-      <figure>
-        <a href="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png"><img src="works/energy-ccs/figures/Figure08_MAC_curve_UK_cement.png" alt="MAC curve" /></a>
-        <figcaption><strong>Exhibit 3 · Abatement options</strong> Comparative MAC curve, UK cement, with ETS price references (final thesis Figure 8).</figcaption>
-      </figure>
-      <figure>
-        <a href="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png"><img src="works/energy-ccs/figures/Figure02_Policy_lockin_heatmap.png" alt="Lock-in heatmap" /></a>
-        <figcaption><strong>Exhibit 4 · Policy regime</strong> Lock-in heatmap for 15 policy documents (final thesis Figure 2). Corpus mean 4.4/7.</figcaption>
-      </figure>
-      <figure>
-        <a href="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png"><img src="works/energy-ccs/figures/Figure07_Tornado_sensitivity_MEA.png" alt="Tornado chart" /></a>
-        <figcaption><strong>Exhibit 5 · Cost drivers</strong> Tornado sensitivity for post-combustion MEA: capture cost dominates (final thesis Figure 7).</figcaption>
-      </figure>
-      <figure>
-        <a href="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png"><img src="works/energy-ccs/figures/Figure13_Joint_display_mixed_methods.png" alt="Joint display" /></a>
-        <figcaption><strong>Exhibit 6 · Synthesis</strong> Joint display of policy, economics and social-licence strands (final thesis Figure 13).</figcaption>
-      </figure>
-    </div>
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="reveal">Experience</h2>
+        <div class="timeline reveal" aria-label="Experience timeline">
+          <article class="t-item">
+            <h3 class="t-title">Climate &amp; Carbon Markets Consultant — Common Fund for Commodities &amp; Forestry and Land Check</h3>
+            <p class="t-meta">Jul 2025 – Oct 2025 · Remote</p>
+            <p class="t-line">Designed MRV frameworks and monitoring plans for REDD+ and PES programmes, supported fund-ready KPI and documentation packs, and quality-assured programme outputs.</p>
+          </article>
 
-    <h2>Documents for download</h2>
-    <div class="docs">
-      <div class="doc">
-        <a href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.pdf">Research brief</a>
-        <p>Two-page findings note (Arial). Full MESPOM consortium. <a href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.docx">Word</a></p>
-      </div>
-      <div class="doc">
-        <a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.pdf">Thesis abstract</a>
-        <p>Examined abstract with Erasmus Mundus affiliation. <a href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Word</a></p>
-      </div>
-      <div class="doc">
-        <a href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis">Replication repository</a>
-        <p>Python pipeline (numpy / pandas / matplotlib), seed 42.</p>
-      </div>
-    </div>
+          <article class="t-item">
+            <h3 class="t-title">High Integrity Project Development Officer — Sustainable Energy for All (Africa Carbon Markets Initiative)</h3>
+            <p class="t-meta">Mar 2024 – Oct 2024 · Ghana / Nigeria / Remote</p>
+            <p class="t-line">Supported GHG accounting, emissions baselining, and MRV system design for early-stage carbon projects, and contributed to launch and scaling work for an Africa-wide decarbonisation platform.</p>
+          </article>
 
-    <h2>Related publications</h2>
-    <div class="intro pubs">
-      <ul>
-        <li>Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends. <em>Journal of Earth System Science</em>, 135, 187. <a href="https://doi.org/10.1007/s12040-026-02867-4">doi:10.1007/s12040-026-02867-4</a></li>
-        <li>Saber, M., Koroma, A., Posite, R. V., Ly, A., Tejan Bah, A. M., Abdulai, A., et al. (2025). Climate change adaptation and disaster risk reduction in Africa. <em>Journal of Water and Climate Change</em>, 16(5), 1831–1862. <a href="https://doi.org/10.2166/wcc.2025.741">doi:10.2166/wcc.2025.741</a></li>
-        <li>Siddique, H. A., Kanagie, A., &amp; Abdulai, A. (2024). Echoes of the past: Power and colonial impact on contemporary climate politics. In <em>Climate change and environmental politics</em> (pp. 141–166). Transnational Press London.</li>
-      </ul>
-      <p style="margin:.8rem 0 0;">
-        <a href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief — drought and food security, northern Ghana</a>
-        · <a href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publications list</a>
-        · <a href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.pdf">Publication plan</a>
-      </p>
-    </div>
+          <article class="t-item">
+            <h3 class="t-title">Intern — Climate Transparency and Carbon Markets — UNFCCC Regional Collaboration Centre (East &amp; Southern Africa)</h3>
+            <p class="t-meta">Jul 2023 – Feb 2024 · Kampala / Remote</p>
+            <p class="t-line">Analysed 15+ national GHG inventories and Biennial Update Reports, shaped synthesis work on Article 6 and carbon pricing instruments, and supported transition analysis towards the Enhanced Transparency Framework.</p>
+          </article>
 
-    <h2>Training, posters & awards</h2>
-    <div class="docs">
-      <div class="doc">
-        <p><strong>University of the Aegean — research poster</strong></p>
-        <p>
-          Mapped temperature, precipitation and “dryness” shifts (Köppen–Geiger + trend detection; RCP 4.5 / 8.5).<br />
-          Temperature R²=0.93; dryness R²=0.66. Built ArcGIS Model Builder + Python pipeline structure.
-        </p>
-      </div>
-      <div class="doc">
-        <p><strong>Youth Challenge International (HerStart) — training & mentoring</strong></p>
-        <p>
-          Delivered climate action and green entrepreneurship to 300+ youth.<br />
-          Facilitated 15 multi-stakeholder workshops; mentored 10+ mentees toward HerStart Catalyst Funding.
-        </p>
-      </div>
-      <div class="doc">
-        <p><strong>Entrepreneurship & innovation awards</strong></p>
-        <p>
-          Schneider Electric Go Green Challenge — Global Winner (2025): technical lead; €6,000 + mentorship.<br />
-          Geneva Challenge — 2nd globally / 1st in Africa (2023). Stanford Global Sustainability Challenge — Top 6 (2026), Jury Award for Strategic Thinking.
-        </p>
-      </div>
-    </div>
+          <article class="t-item">
+            <h3 class="t-title">National Climate Action Fellow — Youth Challenge International (HerStart)</h3>
+            <p class="t-meta">Feb 2021 – May 2022 · Ghana</p>
+            <p class="t-line">Delivered climate action and green-entrepreneurship training for 300+ youth, facilitated multi-stakeholder workshops, and supported mentorship pathways for early-stage ventures.</p>
+          </article>
 
-    <h2>PAUWES thesis (public chart)</h2>
-    <div class="docs">
-      <div class="doc">
-        <a href="works/pauwes/BlockchainCarbonMarkets_Transparency_Model.svg">Blockchain transparency model (chart)</a>
-        <img src="works/pauwes/BlockchainCarbonMarkets_Transparency_Model.svg" alt="Blockchain-enabled transparency model for carbon markets in Africa" />
-        <p>
-          Conceptual blockchain-backed carbon market architecture for Africa: DFE + DEMATEL feeding a UNFCCC-aligned infrastructure blueprint, with UNFCCC RCC (Kampala) and CYNK (Kenya) as study areas.
-        </p>
+          <article class="t-item">
+            <h3 class="t-title">Project Assistant — Innovations for Poverty Action (Escaping Poverty Project)</h3>
+            <p class="t-meta">Sep 2019 – Feb 2021 · Ghana</p>
+            <p class="t-line">Coordinated multi-site R&amp;D operations, supervised field teams, and built operational tracking systems that improved field workflow and participant data integrity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section">
+      <div class="container">
+        <h2 class="reveal">Selected impact</h2>
+
+        <div class="impact-grid">
+          <article class="impact-card card reveal">
+            <div class="impact-head">
+              <div class="impact-thumb" aria-hidden="true">
+                <img src="works/energy-ccs/figures/Figure01_PeakCluster_pipeline_map.png" alt="Peak Cluster pipeline corridor and anchor facilities (research figure)." loading="lazy" />
+              </div>
+              <div>
+                <h3 class="impact-title">Benchmarked abatement economics for a UK industrial CCS cluster against UK ETS pricing</h3>
+                <p class="impact-desc">Developed a decision-oriented analysis linking carbon-price incentives, abatement economics, and social-licence conditions for a live cement and lime decarbonisation pathway.</p>
+                <div class="link-row">
+                  <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.pdf">Executive brief (PDF)</a>
+                  <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.docx">Executive brief (Word)</a>
+                  <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.pdf">Thesis abstract (PDF)</a>
+                  <a class="link-pill" href="https://github.com/Authenticscholar/peak-cluster-ccs-analysis" target="_blank" rel="noopener">Research code</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card card reveal">
+            <div class="impact-head">
+              <div>
+                <h3 class="impact-title">Designed a conceptual blockchain-backed model to improve carbon-market transparency in Africa</h3>
+                <p class="impact-desc">Proposed an auditable transaction and reporting architecture aligned to global carbon-market reporting flows, with an emphasis on transparency and integrity.</p>
+                <div class="link-row">
+                  <a class="link-pill" href="works/pauwes/BlockchainCarbonMarkets_Transparency_Model.svg">View public chart (SVG)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card card reveal">
+            <div class="impact-head">
+              <div>
+                <h3 class="impact-title">Translated climate-risk evidence into a policy-ready drought and food-security brief</h3>
+                <p class="impact-desc">Packaged consecutive-drought context and decision considerations for stakeholders working on food security in northern Ghana.</p>
+                <div class="link-row">
+                  <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_Drought_FoodSecurity_PolicyBrief.pdf">Policy brief (PDF)</a>
+                  <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.pdf">Publication plan (PDF)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card card reveal">
+            <div class="impact-head">
+              <div>
+                <h3 class="impact-title">Delivered climate-action and green-entrepreneurship training for 300+ youth</h3>
+                <p class="impact-desc">Built facilitation plans for HerStart, led multi-stakeholder workshops, and supported mentorship pathways for emerging ventures.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="card reveal" style="margin-top:14px;">
+          <h3 class="impact-title" style="margin:0;">Full document access</h3>
+          <p class="impact-desc" style="margin-top:8px;">Additional thesis writing and publication materials are available via the document links below.</p>
+          <div class="link-row">
+            <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ThesisAbstract_PeakCluster_CCS.docx">Thesis abstract (Word)</a>
+            <a class="link-pill" href="works/policy-writing/AlhassanAbdulai_Thesis_Abstract_Short.pdf">Short abstract (PDF)</a>
+            <a class="link-pill" href="works/policy-writing/AlhassanAbdulai_Thesis_Abstract_Short.docx">Short abstract (Word)</a>
+            <a class="link-pill" href="works/climate-risk/AlhassanAbdulai_PublicationPlan_ExtendedAbstract_2026.docx">Publication plan (Word)</a>
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publication list (PDF)</a>
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Publication list (Word)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 id="recognition" class="reveal">Recognition</h2>
+        <div class="award-row reveal" role="list" aria-label="Awards and recognition">
+          <div class="award" role="listitem">Schneider Electric Go Green Challenge — Global Winner (2025)</div>
+          <div class="award" role="listitem">Geneva Challenge — 2nd Place globally (1st in Africa) (2023)</div>
+          <div class="award" role="listitem">Stanford Global Sustainability Challenge — Top 6 (2026) · Jury Award for Strategic Thinking</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <h2 class="reveal">Publications</h2>
+        <ul class="pub-list" aria-label="Selected publications">
+          <li class="pub reveal">
+            <p class="cite">Saber, M., Posite, V. R., Abdulai, A., et al. (2026). Climate change hotspots in Africa: rainfall, temperature and drought trends.</p>
+            <p class="meta">Journal of Earth System Science · 135 · 187 · <a href="https://doi.org/10.1007/s12040-026-02867-4" target="_blank" rel="noopener">doi:10.1007/s12040-026-02867-4</a></p>
+          </li>
+
+          <li class="pub reveal">
+            <p class="cite">Saber, M., Koroma, A., Posite, R. V., Ly, A., Tejan Bah, A. M., Abdulai, A., et al. (2025). Climate change adaptation and disaster risk reduction in Africa.</p>
+            <p class="meta">Journal of Water and Climate Change · 16(5) · 1831–1862 · <a href="https://doi.org/10.2166/wcc.2025.741" target="_blank" rel="noopener">doi:10.2166/wcc.2025.741</a></p>
+          </li>
+
+          <li class="pub reveal">
+            <p class="cite">Siddique, H. A., Kanagie, A., &amp; Abdulai, A. (2024). Echoes of the past: Power and colonial impact on contemporary climate politics.</p>
+            <p class="meta">In Climate change and environmental politics (pp. 141–166) · Transnational Press London</p>
+          </li>
+        </ul>
+
+        <div class="card reveal" style="margin-top:14px;">
+          <h3 class="impact-title" style="margin:0;">Full publications list</h3>
+          <p class="impact-desc" style="margin-top:8px;">For recruiter review, this page keeps abstracts off the surface; full documentation is available as a separate file.</p>
+          <div class="link-row">
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.pdf">Publications list (PDF)</a>
+            <a class="link-pill" href="works/carbon-markets/Alhassan_Abdulai_Publications.docx">Publications list (Word)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="reveal">Contact</h2>
+
+        <div class="contact-grid">
+          <div class="card contact reveal">
+            <p><strong>Email</strong>: <a href="mailto:abdulaia549@gmail.com">abdulaia549@gmail.com</a></p>
+            <p><strong>LinkedIn</strong>: <a href="https://www.linkedin.com/in/alhassan-abdulai-1a9198169/" target="_blank" rel="noopener">linkedin.com/in/alhassan-abdulai-1a9198169</a></p>
+            <p><strong>CV</strong>: <a href="AlhassanAbdulai_CV_Master_2026.pdf" download>Download PDF</a></p>
+          </div>
+
+          <div class="card contact reveal">
+            <p><strong>Fast brief links</strong></p>
+            <p style="margin-top:10px;">Peak Cluster CCS executive brief and supporting documents are available below.</p>
+            <div class="link-row">
+              <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.pdf">Executive brief (PDF)</a>
+              <a class="link-pill" href="works/energy-ccs/AlhassanAbdulai_ResearchBrief_PeakCluster_CCS_2026.docx">Executive brief (Word)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="container">
+        Built for fast recruiter review: concise leadership-style positioning, with technical detail available through the linked briefs and documents.
       </div>
     </div>
   </main>
-  <footer>
-    <div class="wrap">Portfolio highlights (MESPOM final-thesis exhibits, YCI training summaries, awards, and a public PAUWES conceptual chart). Full dissertations on request.</div>
-  </footer>
+
+  <script>
+    (function(){
+      var supportsIO = (typeof IntersectionObserver !== 'undefined');
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if(!supportsIO){
+        for(var i=0;i<revealEls.length;i++){ revealEls[i].classList.add('in-view'); }
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      revealEls.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
